@@ -44,86 +44,89 @@ class RegisterScreen extends StatelessWidget {
                   Image(
                     image: AssetImage('assets/images/welcome.png'),
                   ),
-                Column(
-                  children: [
-                    defaultFormField(
-                      controller: nameController,
-                      type: TextInputType.name,
-                      validate: (String value) {
-                        if (value.isEmpty) {
-                          return 'أدخل أسمك';
-                        }
-                      },
-                      label: 'الأسم الأول',
-                      prefix: Icons.person,
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    defaultFormField(
-                      controller: lastnameController,
-                      type: TextInputType.name,
-                      validate: (String value) {
-                        if (value.isEmpty) {
-                          return 'أدخل الأسم الأخير';
-                        }
-                      },
-                      label: 'الأسم الأخير',
-                      prefix: Icons.person,
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    defaultFormField(
-                      controller: emailController,
-                      type: TextInputType.emailAddress,
-                      validate: (String value) {
-                        if (value.isEmpty) {
-                          return 'أدخل إيميلك الألكتروني';
-                        }
-                      },
-                      label: 'البريد الألكتروني',
-                      prefix: Icons.email_outlined,
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    defaultFormField(
-                      controller: passwordController,
-                      type: TextInputType.visiblePassword,
-                      // suffix: ShopRegisterCubit.get(context).suffix,
-                      // onSubmit: (value)
-                      // {
-                      //
-                      // },
-                      // isPassword: ShopRegisterCubit.get(context).isPassword,
-                      // suffixPressed: () {
-                      //   ShopRegisterCubit.get(context)
-                      //       .changePasswordVisibility();
-                      // },
-                      validate: (String value) {
-                        if (value.isEmpty) {
-                          return 'أدخل كلمة سر مكونة من 8 أرقام فأكثر';
-                        }
-                      },
-                      label: 'كلمة السر',
-                      prefix: Icons.lock_outline,
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    defaultFormField(
-                      controller: phoneController,
-                      type: TextInputType.phone,
-                      validate: (String value) {
-                        if (value.isEmpty) {
-                          return 'أدخل رقم الهاتف';
-                        }
-                      },
-                      label: 'رقم الهاتف',
-                      prefix: Icons.phone,
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      defaultFormField(
+                        controller: nameController,
+                        type: TextInputType.name,
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return 'أدخل أسمك';
+                          }
+                        },
+                        label: 'الأسم الأول',
+                        prefix: Icons.person,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      defaultFormField(
+                        controller: lastnameController,
+                        type: TextInputType.name,
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return 'أدخل الأسم الأخير';
+                          }
+                        },
+                        label: 'الأسم الأخير',
+                        prefix: Icons.person,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      defaultFormField(
+                        controller: emailController,
+                        type: TextInputType.emailAddress,
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return 'أدخل إيميلك الألكتروني';
+                          }
+                        },
+                        label: 'البريد الألكتروني',
+                        prefix: Icons.email_outlined,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      defaultFormField(
+                        controller: passwordController,
+                        type: TextInputType.visiblePassword,
+                        // suffix: ShopRegisterCubit.get(context).suffix,
+                        // onSubmit: (value)
+                        // {
+                        //
+                        // },
+                        // isPassword: ShopRegisterCubit.get(context).isPassword,
+                        // suffixPressed: () {
+                        //   ShopRegisterCubit.get(context)
+                        //       .changePasswordVisibility();
+                        // },
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return 'أدخل كلمة سر مكونة من 8 أرقام فأكثر';
+                          }
+                        },
+                        label: 'كلمة السر',
+                        prefix: Icons.lock_outline,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      defaultFormField(
+                        controller: phoneController,
+                        type: TextInputType.phone,
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return 'أدخل رقم الهاتف';
+                          }
+                        },
+                        label: 'رقم الهاتف',
+                        prefix: Icons.phone,
+                      ),
+                    ],
+                  ),
                 ),
                   SizedBox(
                     height: 30.0,

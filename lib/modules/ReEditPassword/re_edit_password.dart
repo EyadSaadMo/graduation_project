@@ -109,7 +109,9 @@ class ReEditPassword extends StatelessWidget {
                         {
                           if (formKey.currentState.validate()) {
                             CacheHelper.saveData(
-                                key: 'ReEditPass', value: true);
+                                key: 'ReEditPass', value: true).then((value) {
+                                  navigateTo(context, LayoutScreen());
+                            });
                           }
                         }
                       },

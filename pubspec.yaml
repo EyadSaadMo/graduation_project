@@ -23,10 +23,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: 1.0.0
+  cupertino_icons: ^1.0.0
   shared_preferences:
   smooth_page_indicator:
   hexcolor:
+  url_launcher:
+  bloc:
+  flutter_bloc:
+  convex_bottom_bar:
+#  camera:
+#  path_provider:
+#  path:
+#  image_picker:
 
 dev_dependencies:
   flutter_test:

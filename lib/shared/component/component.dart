@@ -1,3 +1,4 @@
+import 'package:covid/shared/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 
@@ -86,4 +87,35 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     context,
     MaterialPageRoute(builder: (context) => widget),
         (Route<dynamic> route) => false);
+
+Widget defaultAppBar({
+  @required String text,
+}){
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      SizedBox(
+        height: 30.0,
+      ),
+      Center(
+        child: Text(
+          '$text',
+          style: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+              color: bluelightColor),
+        ),
+      ),
+      SizedBox(
+        height: 5.0,
+      ),
+      Container(
+        width: double.infinity,
+        height: 4,
+        color: bluelightColor,
+      ),
+    ],
+  );
+}
 

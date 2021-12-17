@@ -25,117 +25,125 @@ class LoginScreen extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  Text(
-                    'تسجيل الدخول'.toUpperCase(),
-                    style: TextStyle(
-                        fontSize: 40.0,
-                        color: bluelightColor,
-                        fontWeight: FontWeight.bold),
+            child: Column(
+              children: [
+                Text(
+                  'تسجيل الدخول'.toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 40.0,
+                      color: bluelightColor,
+                      fontWeight: FontWeight.bold),
+                ),
+                Image(
+                  image: AssetImage('assets/images/welcome.png'),
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Form(
+                  key: formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      children: [
+                        defaultFormField(
+                          controller: emailController,
+                          type: TextInputType.emailAddress,
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'أدخل بريدك الألكتروني';
+                            }
+                          },
+                          label: 'البريد الألكتروني',
+                          prefix: Icons.email_outlined,
+                        ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        defaultFormField(
+                          controller: passwordController,
+                          type: TextInputType.visiblePassword,
+                          // suffix: ShopRegisterCubit.get(context).suffix,
+                          // onSubmit: (value)
+                          // {
+                          //
+                          // },
+                          // isPassword: ShopRegisterCubit.get(context).isPassword,
+                          // suffixPressed: () {
+                          //   ShopRegisterCubit.get(context)
+                          //       .changePasswordVisibility();
+                          // },
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'أدخل كلمة سر مكونة من 8 أرقام فأكثر';
+                            }
+                          },
+                          label: 'كلمة السر',
+                          prefix: Icons.lock_outline,
+                        ),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        GestureDetector(
+                          child: Text(
+                            ' هل نسيت كلمه السر ؟ ',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          onTap: () {
+                            navigateTo(context, ForgetPassword());
+                          },
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        defaultButton(
+                            width: 200,
+                            background: bluelightColor,
+                            function: () {
+                              {
+                                if (formKey.currentState.validate()) {
+                                  CacheHelper.saveData(key: 'Login', value: true)
+                                      .then((value) {
+                                    navigateAndFinish(context, LayoutScreen());
+                                  });
+                                }
+                              }
+                            },
+                            text: 'تسجيل دخول '),
+                      ],
+                    ),
                   ),
-                  Image(
-                    image: AssetImage('assets/images/welcome.png'),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  defaultFormField(
-                    controller: emailController,
-                    type: TextInputType.emailAddress,
-                    validate: (String value) {
-                      if (value.isEmpty) {
-                        return 'أدخل بريدك الألكتروني';
-                      }
-                    },
-                    label: 'البريد الألكتروني',
-                    prefix: Icons.email_outlined,
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  defaultFormField(
-                    controller: passwordController,
-                    type: TextInputType.visiblePassword,
-                    // suffix: ShopRegisterCubit.get(context).suffix,
-                    // onSubmit: (value)
-                    // {
-                    //
-                    // },
-                    // isPassword: ShopRegisterCubit.get(context).isPassword,
-                    // suffixPressed: () {
-                    //   ShopRegisterCubit.get(context)
-                    //       .changePasswordVisibility();
-                    // },
-                    validate: (String value) {
-                      if (value.isEmpty) {
-                        return 'أدخل كلمة سر مكونة من 8 أرقام فأكثر';
-                      }
-                    },
-                    label: 'كلمة السر',
-                    prefix: Icons.lock_outline,
-                  ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  GestureDetector(
-                    child: Text(
-                      ' هل نسيت كلمه السر ؟ ',
+                ),
+
+                SizedBox(
+                  height: 7.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        navigateTo(context, RegisterScreen());
+                      },
+                      child: Text(
+                        'اشتراك',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: bluelightColor,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '  .أنا مستخدم جديد',
                       style: TextStyle(
                         fontSize: 18,
                       ),
                     ),
-                    onTap: () {
-                      navigateTo(context, ForgetPassword());
-                    },
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  defaultButton(
-                      width: 200,
-                      background: bluelightColor,
-                      function: () {
-                        {
-                          if (formKey.currentState.validate()) {
-                            CacheHelper.saveData(key: 'Login', value: true)
-                                .then((value) {
-                              navigateAndFinish(context, LayoutScreen());
-                            });
-                          }
-                        }
-                      },
-                      text: 'تسجيل دخول '),
-                  SizedBox(
-                    height: 7.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          navigateTo(context, RegisterScreen());
-                        },
-                        child: Text(
-                          'اشتراك',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: bluelightColor,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        '  .أنا مستخدم جديد',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
