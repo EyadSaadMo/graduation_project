@@ -1,6 +1,5 @@
 import 'package:covid/layout/cubit/cubit.dart';
 import 'package:covid/layout/layout_screen.dart';
-import 'package:covid/modules/onBoarding/onBoarding_screen.dart';
 
 import 'package:covid/shared/network/local/cache_helper.dart';
 
