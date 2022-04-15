@@ -1,21 +1,45 @@
 import 'package:covid/layout/cubit/cubit.dart';
 import 'package:covid/layout/layout_screen.dart';
+import 'package:covid/modules/login/login_screen.dart';
+import 'package:covid/modules/onBoarding/onBoarding_screen.dart';
+import 'package:covid/shared/component/constants.dart';
 
 import 'package:covid/shared/network/local/cache_helper.dart';
+import 'package:covid/shared/network/remote/dio_helper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'layout/cubit/states.dart';
-
-void main() {
+// List<CameraDescription> cameras;
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  CacheHelper.init();
-  runApp(MyApp());
+  Bloc.observer = BlocObserver();
+  // bool isDark = CacheHelper.getData(key: 'isDark');
+  DioHelper.init();
+  await CacheHelper.init();
+  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
+  // token = CacheHelper.getData(key: 'token');
+  print(token);
+  Widget widget= LayoutScreen();
+  if(onBoarding != null)
+  {
+    if(token != null) widget = LayoutScreen();
+    else widget = LoginScreen();
+  }
+  else widget= OnBoardingScreen();
+
+
+  runApp(MyApp(
+    // isDark: isDark,
+    homeWidget: widget,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final Widget homeWidget;
+
+  const MyApp({Key key, this.homeWidget}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -31,7 +55,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: Directionality(
               textDirection: TextDirection.ltr,
-              child: LayoutScreen(),
+              child: homeWidget,
             ),
           );
         },
@@ -39,52 +63,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-// class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
-//   final Color backgroundColor;
-//   final Color titleColor;
-//   final String title;
-//   final AppBar appBar;
-//   final List<Widget> widgets;
-//   final RoundedRectangleBorder shape;
-//
-//   DefaultAppBar({
-//     Key key,
-//     @required this.title,
-//     @required this.appBar,
-//     this.widgets,
-//     @required this.backgroundColor,
-//     this.shape,
-//     @required this.titleColor,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       centerTitle: true,
-//       title: Text(
-//         title,
-//         style: TextStyle(
-//             fontSize: 30.0, fontWeight: FontWeight.bold, color: titleColor),
-//       ),
-//       backgroundColor: backgroundColor,
-//       // actions: [
-//       //   Padding(
-//       //     padding: EdgeInsets.all(10.0),
-//       //     child: Icon(
-//       //       Icons.navigate_next,
-//       //       color: Colors.black,
-//       //     ),
-//       //   ),
-//       // ],
-//       shape: const RoundedRectangleBorder(
-//         borderRadius: BorderRadius.only(
-//           bottomRight: Radius.circular(5.0),
-//           bottomLeft: Radius.circular(5.0),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   @override
-//   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
-// }

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:camera/camera.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:covid/layout/cubit/states.dart';
 import 'package:covid/modules/account/account_screen.dart';
@@ -23,11 +24,12 @@ class AppCubit extends Cubit<AppStates>{
     TabItem( icon: Icon(Icons.favorite_border_outlined,color: Colors.blue.shade200)),
     TabItem( icon: Icon(Icons.person,color: Colors.blue.shade200)),
   ];
+
   List<Widget> bottomScreens =
   [
     HomeScreen(),
     HandDistancing(),
-    Camera(),
+    CameraScreen(),
     HeartBeat(),
     Account(),
   ];
@@ -38,7 +40,7 @@ class AppCubit extends Cubit<AppStates>{
   }
 
 
-  static const _url = 'https://www.who.int/ar/emergencies/diseases/novel-coronavirus-2019/advice-for-public';
+  // static const _url = '';
 
   Future<void> makePhoneCall(String url) async {
     if (await canLaunch(url)) {
@@ -51,7 +53,7 @@ class AppCubit extends Cubit<AppStates>{
       throw 'Could not launch $url';
     }
   }
-  void launchURL() async {
+  void launchURL( String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
     emit(AppLaunchLinks());
   }

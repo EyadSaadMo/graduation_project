@@ -1,4 +1,5 @@
 import 'package:covid/models/onBoarding_model.dart';
+import 'package:covid/modules/login/login_screen.dart';
 import 'package:covid/modules/register/register_screen.dart';
 import 'package:covid/shared/colors/colors.dart';
 import 'package:covid/shared/component/component.dart';
@@ -22,7 +23,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       if (value) {
         navigateAndFinish(
           context,
-          RegisterScreen(),
+          LoginScreen(),
         );
       }
     });

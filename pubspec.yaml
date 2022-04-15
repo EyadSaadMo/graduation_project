@@ -31,11 +31,17 @@ dependencies:
   bloc:
   flutter_bloc:
   convex_bottom_bar:
-#  camera:
-#  path_provider:
-#  path:
-#  image_picker:
-
+  charts_flutter:
+  wakelock:
+  camera:
+  video_player:
+  path_provider:
+  path:
+  images_picker:
+  http:
+  dio:
+  conditional_builder:
+  fluttertoast:
 dev_dependencies:
   flutter_test:
     sdk: flutter

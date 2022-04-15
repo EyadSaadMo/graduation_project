@@ -1,97 +1,125 @@
+import 'package:covid/layout/cubit/cubit.dart';
+import 'package:covid/layout/cubit/states.dart';
 import 'package:covid/models/recommended_videos_model.dart';
 import 'package:covid/shared/component/component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RecommendedScreen extends StatelessWidget {
   const RecommendedScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                defaultAppBar(text: 'فيديوهات توعوية'),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Text(
-                  'الأعراض',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                buildSafeItem(tiredVideos[0]),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'الإحتياطات',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 240,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => buildSafeItem(
-                      safeVideos[index],
+    List<String> l1 = [
+      'https://youtu.be/7Mv6NJXE1ag',
+      'https://youtu.be/SQuYuraoabA',
+    ];
+    List<String> l2 = [
+      'https://youtu.be/9tTg54rbEjc',
+      'https://youtu.be/THuB7ZjmIdE',
+      'https://youtu.be/u0RZbidvSSw',
+    ];
+    return BlocConsumer<AppCubit,AppStates>
+      (listener: (context,state){},
+      builder: (context,state){
+        var cubit = AppCubit.get(context);
+        return Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    defaultAppBar(text: 'فيديوهات توعوية'),
+                    SizedBox(
+                      height: 15.0,
                     ),
-                    separatorBuilder: (context, index) => SizedBox(
-                      width: 10,
+                    Text(
+                      'الأعراض',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
-                    itemCount: safeVideos.length,
-                    shrinkWrap: true,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'العلاج الطبيعي',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 240,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => buildSafeItem(
-                      fitness[index],
+                    SizedBox(
+                      height: 10.0,
                     ),
-                    separatorBuilder: (context, index) => SizedBox(
-                      width: 10,
+                    GestureDetector(
+                      child: buildSafeItem(tiredVideos[0],),
+                      onTap: (){
+                        cubit.launchURL('https://youtu.be/sEWnGIQTIII');
+                      },
                     ),
-                    itemCount: fitness.length,
-                    shrinkWrap: true,
-                  ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'الإحتياطات',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        height: 240,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => buildSafeItem(
+                              safeVideos[index],
+                          ),
+                          separatorBuilder: (context, index) => SizedBox(
+                            width: 10,
+                          ),
+                          itemCount: safeVideos.length,
+                          shrinkWrap: true,
+                        ),
+                      ),
+                      onTap: (){
+                        cubit.launchURL( l1.length.toString());
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'العلاج الطبيعي',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 240,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) => buildSafeItem(
+                            fitness[index],
+                        ),
+                        separatorBuilder: (context, index) => SizedBox(
+                          width: 10,
+                        ),
+                        itemCount: fitness.length,
+                        shrinkWrap: true,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        );
+    },
+        );
   }
 }
 
@@ -130,7 +158,7 @@ Widget buildSafeItem(VideosModel model) {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(50),
               ),
-              child: IconButton(icon: Icon(Icons.stop), onPressed: () {}),
+              child: IconButton(icon: Icon(Icons.play_arrow), ),
             ),
           ),
 

@@ -151,7 +151,7 @@ class HomeScreen extends StatelessWidget {
                                         fontSize: 18.0, color: Colors.blue),
                                   ),
                                 ),
-                                onTap: (){cubit.launchURL();},
+                                onTap: (){cubit.launchURL('https://www.who.int/ar/emergencies/diseases/novel-coronavirus-2019/advice-for-public');},
                               ),
                             ],
                           ),
