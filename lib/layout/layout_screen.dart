@@ -5,19 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class LayoutScreen extends StatefulWidget {
-  const LayoutScreen({Key key}) : super(key: key);
+class LayoutScreen extends StatelessWidget {
 
-  @override
-  _LayoutScreenState createState() => _LayoutScreenState();
-}
-
-class _LayoutScreenState extends State<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppStates>(
+    return
+      // BlocProvider(
+      // create: (context) => AppCubit(),
+      // child:
+      BlocConsumer<AppCubit, AppStates>(
           listener: (context, state) {},
           builder: (context, state) {
             var cubit = AppCubit.get(context);
@@ -28,16 +24,15 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 backgroundColor: Colors.white,
 
                 onTap: (index) {
-                  setState(() {
-                    cubit.selectedIndex = index;
-                  });
+                  cubit.changeBottom(index);
                 },
                 items: cubit.bottomItems,
                 initialActiveIndex: cubit.selectedIndex,
                 activeColor: HexColor('#AAE3FF'),
               ),
             );
-          }),
-    );
-  }
+          }
+      ); }
+
 }
+

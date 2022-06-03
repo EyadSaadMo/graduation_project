@@ -4,11 +4,11 @@ import 'package:covid/shared/network/local/cache_helper.dart';
 import 'component.dart';
 
 void signOut(context) {
-  // CacheHelper.removeData(key: 'token').then((value) {
-  //   if (value) {
-  //     navigateAndFinish(context, LoginScreen());
-  //   }
-  // });
+  CacheHelper.removeData(key: 'token').then((value) {
+    if (value) {
+      navigateAndFinish(context, LoginScreen());
+    }
+  });
 }
 void printFullText(String text)
 {

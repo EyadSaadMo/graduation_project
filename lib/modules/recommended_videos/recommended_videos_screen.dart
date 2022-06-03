@@ -158,7 +158,7 @@ Widget buildSafeItem(VideosModel model) {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(50),
               ),
-              child: IconButton(icon: Icon(Icons.play_arrow), ),
+              child: IconButton(icon: Icon(Icons.play_arrow), onPressed: () {}, ),
             ),
           ),
 

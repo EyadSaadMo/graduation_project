@@ -4,12 +4,13 @@ abstract class AppRegisterStates{}
 class AppRegisterInitialState extends AppRegisterStates{}
 class AppRegisterLoadingState extends AppRegisterStates{}
 class AppRegisterSuccessState extends AppRegisterStates{
-  final UserRegisterAndLoginModel userRegisterAndLoginModel;
+  final AppLoginModel loginModel;
 
-  AppRegisterSuccessState(this.userRegisterAndLoginModel);
+  AppRegisterSuccessState(this.loginModel);
 }
 class AppRegisterErrorState extends AppRegisterStates{
   final String error;
 
   AppRegisterErrorState(this.error);
 }
+class AppRegisterChangePasswordVisibilityState extends AppRegisterStates {}

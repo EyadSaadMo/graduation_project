@@ -9,7 +9,7 @@ class AppLoginCubit extends Cubit<AppLoginStates>{
   AppLoginCubit(): super(AppLoginInitialState());
   static AppLoginCubit get(context) => BlocProvider.of(context);
 
-  UserRegisterAndLoginModel userRegisterAndLoginModel;
+  AppLoginModel loginModel;
   void userLogin({
     @required String email,
     @required String password,
@@ -27,12 +27,23 @@ class AppLoginCubit extends Cubit<AppLoginStates>{
     ).then((value)
     {
       print(value.data);
-      userRegisterAndLoginModel = UserRegisterAndLoginModel.fromJson(value.data);
-      emit(AppLoginSuccessState(userRegisterAndLoginModel));
+      loginModel = AppLoginModel.fromJson(value.data);
+      emit(AppLoginSuccessState(loginModel));
     }).catchError((error)
     {
       print(error.toString());
       emit(AppLoginErrorState(error.toString()));
     });
+  }
+
+  IconData suffix = Icons.visibility_outlined;
+  bool isPassword = true;
+
+  void changePasswordVisibility()
+  {
+    isPassword = !isPassword;
+    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined ;
+
+    emit(AppChangePasswordVisibilityState());
   }
 }

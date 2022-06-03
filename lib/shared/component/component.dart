@@ -19,7 +19,7 @@ Widget defaultButton({
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
           ),
         ),

@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 class DioHelper {
   static Dio dio;
 
-  static init()
-  {
+  static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://graduationproject2000.000webhostapp.com/api/auth/',
+        baseUrl: 'https://student.valuxapps.com/api/',
+        // baseUrl: 'https://graduationproject2000.000webhostapp.com/api/auth/',
         receiveDataWhenStatusError: true,
       ),
     );
@@ -19,12 +19,10 @@ class DioHelper {
     Map<String, dynamic> query,
     String lang = 'en',
     String token,
-  }) async
-  {
-    dio.options.headers =
-    {
-      'lang':lang,
-      'Authorization': token??'',
+  }) async {
+    dio.options.headers = {
+      'lang': lang,
+      'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
 
@@ -40,12 +38,10 @@ class DioHelper {
     Map<String, dynamic> query,
     String lang = 'en',
     String token,
-  }) async
-  {
-    dio.options.headers =
-    {
-      'lang':lang,
-      'Authorization': token??'',
+  }) async {
+    dio.options.headers = {
+      'lang': lang,
+      'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
 
@@ -62,12 +58,10 @@ class DioHelper {
     Map<String, dynamic> query,
     String lang = 'en',
     String token,
-  }) async
-  {
-    dio.options.headers =
-    {
-      'lang':lang,
-      'Authorization': token??'',
+  }) async {
+    dio.options.headers = {
+      'lang': lang,
+      'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
 

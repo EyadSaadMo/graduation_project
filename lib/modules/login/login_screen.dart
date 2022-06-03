@@ -1,6 +1,5 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:covid/layout/layout_screen.dart';
-import 'package:covid/modules/forgetPassword/forget_password_screen.dart';
 import 'package:covid/modules/login/cubit/cubit.dart';
 import 'package:covid/modules/login/cubit/states.dart';
 import 'package:covid/modules/register/register_screen.dart';
@@ -23,32 +22,32 @@ class LoginScreen extends StatelessWidget {
       create: (BuildContext context) => AppLoginCubit(),
       child: BlocConsumer<AppLoginCubit, AppLoginStates>(
           listener: (context, state) {
-        if (state is AppLoginSuccessState) {
-          if (state.userLoginAndLoginModel.status ) {
-            print(state.userLoginAndLoginModel.message);
-            print(state.userLoginAndLoginModel.data.token);
+            if (state is AppLoginSuccessState) {
+              if (state.loginModel.status ) {
+                print(state.loginModel.message);
+                print(state.loginModel.data.token);
 
-            CacheHelper.saveData(
-              key: 'token',
-              value: state.userLoginAndLoginModel.data.token,
-            ).then((value) {
-              token = state.userLoginAndLoginModel.data.token;
+                CacheHelper.saveData(
+                  key: 'token',
+                  value: state.loginModel.data.token,
+                ).then((value) {
+                  token = state.loginModel.data.token;
 
-              navigateAndFinish(
-                context,
-                LayoutScreen(),
-              );
-            });
-          } else {
-            print(state.userLoginAndLoginModel.message);
+                  navigateAndFinish(
+                    context,
+                    LayoutScreen(),
+                  );
+                });
+              } else {
+                print(state.loginModel.message);
 
-            showToast(
-              text: state.userLoginAndLoginModel.message,
-              state: ToastStates.ERROR,
-            );
-          }
-        }
-      }, builder: (context, state) {
+                showToast(
+                  text: state.loginModel.message,
+                  state: ToastStates.ERROR,
+                );
+              }
+            }
+          }, builder: (context, state) {
         return Scaffold(
           backgroundColor: white,
           appBar: AppBar(
@@ -108,6 +107,20 @@ class LoginScreen extends StatelessWidget {
                               //   AppRegisterCubit.get(context)
                               //       .changePasswordVisibility();
                               // },
+                              suffix: AppLoginCubit.get(context).suffix,
+                              onSubmit: (value) {
+                                if (formKey.currentState.validate()) {
+                                  AppLoginCubit.get(context).userLogin(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  );
+                                }
+                              },
+                              isPassword: AppLoginCubit.get(context).isPassword,
+                              suffixPressed: () {
+                                AppLoginCubit.get(context)
+                                    .changePasswordVisibility();
+                              },
                               validate: (String value) {
                                 if (value.isEmpty) {
                                   return 'أدخل كلمة سر مكونة من 8 أرقام فأكثر';
@@ -127,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {
-                                navigateTo(context, ForgetPassword());
+                                //navigateTo(context, ForgetPassword());
                               },
                             ),
                             SizedBox(

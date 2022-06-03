@@ -22,7 +22,7 @@ class HomePageView extends State<MeasureHeartBeat> with SingleTickerProviderStat
   int _bpm = 0; // beats per minute
   int _fs = 30; // sampling frequency (fps)
   int _windowLen = 30 * 6; // window length to display - 6 seconds
-  CameraImage _image; // store the last camera image
+  CameraImage _image; // store the last X_ray_Detecting image
   double _avg; // store the average value during calculation
   DateTime _now; // store the now Datetime
   Timer _timer; // timer for image processing
@@ -91,7 +91,7 @@ class HomePageView extends State<MeasureHeartBeat> with SingleTickerProviderStat
                                 padding: EdgeInsets.all(4),
                                 child: Text(
                                   _toggled
-                                      ? "Cover both the camera and the flash with your finger"
+                                      ? "Cover both the X_ray_Detecting and the flash with your finger"
                                       : "Camera feed will display here",
                                   style: TextStyle(
                                       backgroundColor: _toggled

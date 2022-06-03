@@ -1,6 +1,5 @@
-import 'package:covid/modules/camera/camera_screen.dart';
 import 'package:covid/modules/oxygen/homePage.dart';
-import 'package:covid/modules/oxygen/measure_oxygen_method1.dart';
+import 'package:covid/modules/oxygen/oxygen_saturation.dart';
 import 'package:covid/shared/component/component.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +30,7 @@ class _HeartBeatState extends State<HeartBeat> {
                   image: 'assets/images/oxygen-saturation.png',
                   text: 'تشبع الأكسجين',
                   onTap: () {
-                    navigateTo(context, OxygenMethodOne());
+                    navigateTo(context,OxygenSaturationScreen());
                   }),
               SizedBox(
                 height: 15,
