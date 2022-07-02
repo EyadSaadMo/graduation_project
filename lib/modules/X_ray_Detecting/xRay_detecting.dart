@@ -218,80 +218,82 @@ class _XRayDetectingScreenState extends State<XRayDetectingScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: <Widget>[
-            defaultAppBar(
-              text: 'Covid-19 detector ',
-            ),
-            _loading
-                ? Container(
-                    height: 300,
-                    width: 300,
-                  )
-                : Container(
-                    margin: EdgeInsets.all(20),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        _image == null ? Container() : Image.file(_image),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        _image == null
-                            ? Container()
-                            : _outputs != null
-                                ? Text(
-                                    _outputs?.length > 0
-                                        ? _outputs[0]["label"]
-                                        : '',
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              defaultAppBar(
+                text: 'Covid-19 detector ',
+              ),
+              _loading
+                  ? Container(
+                      height: 300,
+                      width: 300,
+                    )
+                  : Container(
+                      margin: EdgeInsets.all(20),
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          _image == null ? Container() : Image.file(_image),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          _image == null
+                              ? Container()
+                              : _outputs != null
+                                  ? Text(
+                                      _outputs?.length > 0
+                                          ? _outputs[0]["label"]
+                                          : '',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 20),
 
-                                    //     Text(_outputs[0]["label"],style: TextStyle(color: Colors.black,fontSize: 20),
-                                  )
-                                : Container(child: Text(""))
-                      ],
+                                      //     Text(_outputs[0]["label"],style: TextStyle(color: Colors.black,fontSize: 20),
+                                    )
+                                  : Container(child: Text(""))
+                        ],
+                      ),
                     ),
-                  ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
-            ),
-            ElevatedButton.icon(
-              // color: Colors.lightBlueAccent,
-              onPressed: pickImage2,
-              icon: Icon(Icons.camera_alt),
-              label: Text(
-                "الكاميرا",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Colors.lightBlueAccent),
+              ElevatedButton.icon(
+                // color: Colors.lightBlueAccent,
+                onPressed: pickImage2,
+                icon: Icon(Icons.camera_alt),
+                label: Text(
+                  "الكاميرا",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.lightBlueAccent),
+                ),
               ),
-            ),
-            SizedBox(height: 30,),
-            ElevatedButton.icon(
-              // color: Colors.lightBlueAccent,
-              onPressed: pickImage,
-              icon: Icon(Icons.photo),
-              label: Text(
-                "معرض الصور",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
+              SizedBox(height: 30,),
+              ElevatedButton.icon(
+                // color: Colors.lightBlueAccent,
+                onPressed: pickImage,
+                icon: Icon(Icons.photo),
+                label: Text(
+                  "معرض الصور",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.lightBlueAccent),
+                ),
               ),
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Colors.lightBlueAccent),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

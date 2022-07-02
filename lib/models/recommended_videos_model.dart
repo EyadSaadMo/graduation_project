@@ -5,7 +5,7 @@ class VideosModel{
 
   VideosModel(this.image, this.text1, this.text2,);
 }
-List<VideosModel> tiredVideos=
+List<VideosModel> tiredVideos =
 [
   VideosModel('assets/images/images.jpg', 'تعرف على علامات الإصابة بفيروس كورونا', 'المده - 0:30'),
 ];

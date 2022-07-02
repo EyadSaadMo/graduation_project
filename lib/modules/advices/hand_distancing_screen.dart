@@ -1,6 +1,5 @@
 import 'package:covid/modules/Food_Advice/food_advice_screen.dart';
 import 'package:covid/modules/recommended_videos/recommended_videos_screen.dart';
-import 'package:covid/shared/colors/colors.dart';
 import 'package:covid/shared/component/component.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';

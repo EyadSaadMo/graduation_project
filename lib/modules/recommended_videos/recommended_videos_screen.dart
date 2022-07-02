@@ -10,6 +10,7 @@ class RecommendedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int index = 0;
     List<String> l1 = [
       'https://youtu.be/7Mv6NJXE1ag',
       'https://youtu.be/SQuYuraoabA',
@@ -82,7 +83,7 @@ class RecommendedScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: (){
-                        cubit.launchURL( l1.length.toString());
+                        cubit.launchURL( l1[0]);
                       },
                     ),
                     SizedBox(
@@ -98,19 +99,24 @@ class RecommendedScreen extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 240,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => buildSafeItem(
-                            fitness[index],
+                    GestureDetector(
+                      child: Container(
+                        height: 240,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => buildSafeItem(
+                              fitness[index],
+                          ),
+                          separatorBuilder: (context, index) => SizedBox(
+                            width: 10,
+                          ),
+                          itemCount: fitness.length,
+                          shrinkWrap: true,
                         ),
-                        separatorBuilder: (context, index) => SizedBox(
-                          width: 10,
-                        ),
-                        itemCount: fitness.length,
-                        shrinkWrap: true,
                       ),
+                      onTap: (){
+                        cubit.launchURL( l2[index]);
+                      },
                     ),
                   ],
                 ),

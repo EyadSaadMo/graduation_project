@@ -17,11 +17,10 @@ import 'shared/cubit/states.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = BlocObserver();
-  // bool isDark = CacheHelper.getData(key: 'isDark');
   DioHelper.init();
   await CacheHelper.init();
   bool onBoarding = CacheHelper.getData(key: 'onBoarding');
-  // token = CacheHelper.getData(key: 'token');
+  token = CacheHelper.getData(key: 'token');
   print(token);
   Widget widget = LayoutScreen();
   if (onBoarding != null) {
@@ -33,7 +32,6 @@ Future<void> main() async {
     widget = OnBoardingScreen();
 
   runApp(MyApp(
-    // isDark: isDark,
     homeWidget: widget,
   ));
 }
@@ -58,7 +56,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: Directionality(
               textDirection: TextDirection.ltr,
-              child: OnBoardingScreen(),
+              child: homeWidget,
             ),
           );
         },

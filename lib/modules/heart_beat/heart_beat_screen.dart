@@ -1,4 +1,4 @@
-import 'package:covid/modules/oxygen/homePage.dart';
+import 'package:covid/modules/heart_beat/measure_heart_beat_screen.dart';
 import 'package:covid/modules/oxygen/oxygen_saturation.dart';
 import 'package:covid/shared/component/component.dart';
 import 'package:flutter/material.dart';

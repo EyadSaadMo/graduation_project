@@ -4,7 +4,7 @@ import 'package:covid/layout/cubit/states.dart';
 import 'package:covid/models/register_login_model.dart';
 import 'package:covid/modules/X_ray_Detecting/xRay_detecting.dart';
 import 'package:covid/modules/account/account_screen.dart';
-import 'package:covid/modules/hand_distancing/hand_distancing_screen.dart';
+import 'package:covid/modules/advices/hand_distancing_screen.dart';
 import 'package:covid/modules/heart_beat/heart_beat_screen.dart';
 import 'package:covid/modules/home/home_screen.dart';
 import 'package:covid/shared/component/constants.dart';
