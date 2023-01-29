@@ -25,6 +25,7 @@ dependencies:
   video_player:
   path_provider:
   path:
+  tflite_flutter: ^0.9.0
   tflite:
   image_picker: ^0.6.7+7
   meta:
